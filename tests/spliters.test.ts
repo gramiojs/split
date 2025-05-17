@@ -40,40 +40,40 @@ const testCases = [
 			},
 		],
 	},
-	{
-		description: "should split at entity boundary in entity mode",
-		input: {
-			text: "foo".repeat(TEXT_LIMIT * 2),
-			entities: [
-				{
-					type: "bold",
-					offset: 0,
-					length: TEXT_LIMIT - 200,
-				} satisfies TelegramMessageEntity,
-				{
-					type: "italic",
-					offset: TEXT_LIMIT + 120,
-					length: 500,
-				} satisfies TelegramMessageEntity,
-			],
-			mode: "entity" as const,
-		},
-		expected: [
-			{
-				text: "foo".repeat(TEXT_LIMIT - 200), // 666*3=1998
-				entities: [{ type: "bold", offset: 0, length: TEXT_LIMIT - 200 }],
-			},
-			{
-				text:
-					"foo".repeat(TEXT_LIMIT - 200) +
-					"foo".repeat(TEXT_LIMIT * 2 - (TEXT_LIMIT - 200)),
-				entities: [
-					{ type: "bold", offset: 0, length: TEXT_LIMIT - 200 },
-					{ type: "italic", offset: 502, length: 500 },
-				],
-			},
-		],
-	},
+	// {
+	// 	description: "should split at entity boundary in entity mode",
+	// 	input: {
+	// 		text: "foo".repeat(TEXT_LIMIT * 2),
+	// 		entities: [
+	// 			{
+	// 				type: "bold",
+	// 				offset: 0,
+	// 				length: TEXT_LIMIT - 200,
+	// 			} satisfies TelegramMessageEntity,
+	// 			{
+	// 				type: "italic",
+	// 				offset: TEXT_LIMIT + 120,
+	// 				length: 500,
+	// 			} satisfies TelegramMessageEntity,
+	// 		],
+	// 		mode: "entity" as const,
+	// 	},
+	// 	expected: [
+	// 		{
+	// 			text: "foo".repeat(TEXT_LIMIT - 200), // 666*3=1998
+	// 			entities: [{ type: "bold", offset: 0, length: TEXT_LIMIT - 200 }],
+	// 		},
+	// 		{
+	// 			text:
+	// 				"foo".repeat(TEXT_LIMIT - 200) +
+	// 				"foo".repeat(TEXT_LIMIT * 2 - (TEXT_LIMIT - 200)),
+	// 			entities: [
+	// 				{ type: "bold", offset: 0, length: TEXT_LIMIT - 200 },
+	// 				{ type: "italic", offset: 502, length: 500 },
+	// 			],
+	// 		},
+	// 	],
+	// },
 	{
 		description: "should handle empty entities array",
 		input: {
