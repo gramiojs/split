@@ -1,4 +1,4 @@
-import { FormattableString, Plugin } from "gramio";
+import { FormattableString } from "@gramio/format";
 import { splitText } from "./spliters.ts";
 import { type MaybePromise, TEXT_LIMIT } from "./utils.ts";
 
