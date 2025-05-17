@@ -5,6 +5,8 @@
 [![JSR](https://jsr.io/badges/@gramio/split)](https://jsr.io/@gramio/split)
 [![JSR Score](https://jsr.io/badges/@gramio/split/score)](https://jsr.io/@gramio/split)
 
+This plugin can split messages which reach the Telegram limit into multiple parts (messages). This plugin also split entities so you don't need to do it manually.
+
 # Usage
 
 ```ts
@@ -14,9 +16,10 @@ const bot = new Bot(process.env.BOT_TOKEN!).command(
     "start",
     async (context) => {
         const messages = await splitMessage(
-            format`${bold("foo".repeat(1000))}`,
+            format`${bold("foo".repeat(4096 * 2))}`,
             context.send.bind(context) // .bind(context) is required because otherwise it will lose context data
         );
+
         console.log(messages); // messages is array of second argument results
     }
 );
@@ -30,12 +33,15 @@ You can also use it in other frameworks.
 import { splitMessage } from "@gramio/split";
 
 const messages = await splitMessage(
-    format`${bold("foo".repeat(1000))}`,
+    format`${bold("foo".repeat(4096 * 2))}`,
     ({ text, entities }) => {
         return someOtherFramework.sendMessage(text, { entities });
     }
 );
 ```
+
+> [!NOTE]
+> This package mostly in the WIP stage.
 
 ## TODO:
 

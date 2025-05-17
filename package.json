@@ -1,7 +1,7 @@
 {
 	"name": "@gramio/split",
 	"version": "0.0.1",
-	"description": "server-side parser for telegram init-data",
+	"description": "Split messages into multiple parts",
 	"keywords": ["gramio", "telegram", "split", "tma", "webapp"],
 	"homepage": "https://github.com/gramiojs/split",
 	"readme": "https://github.com/gramiojs/split",
@@ -38,5 +38,9 @@
 		"gramio": "^0.4.3",
 		"pkgroll": "^2.11.2",
 		"typescript": "^5.8.2"
+	},
+	"dependencies": {
+		"@gramio/types": "^9.0.2",
+		"@gramio/format": "^0.3.1"
 	}
 }

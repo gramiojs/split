@@ -3,8 +3,12 @@
   "workspaces": {
     "": {
       "name": "@gramio/init-data",
+      "dependencies": {
+        "@gramio/types": "^9.0.2",
+      },
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",
+        "@gramio/format": "^0.3.1",
         "@types/bun": "^1.2.8",
         "gramio": "^0.4.3",
         "pkgroll": "^2.11.2",
@@ -87,7 +91,7 @@
 
     "@gramio/files": ["@gramio/files@0.3.0", "", { "dependencies": { "@gramio/types": "^9.0.0" } }, "sha512-ZdrwRm57xxWzQ+KxGB5V2aC6raZ9B0yZavkPhd0JzKFUkKS1jbeG3W35qQxdlZZLtD9aeZbjwRAHk4VrRDbpqA=="],
 
-    "@gramio/format": ["@gramio/format@0.2.1", "", { "dependencies": { "@gramio/types": "^9.0.1" } }, "sha512-amkEu4pIPETTp28+M63qFfenNwFJ++0dzXBlX1FjHROXqqsIO03YR16/ACdsh9qlBxooA/80DiSH+bcNzDPhww=="],
+    "@gramio/format": ["@gramio/format@0.3.1", "", { "dependencies": { "@gramio/types": "^9.0.1" }, "peerDependencies": { "marked": "^15.0.11" }, "optionalPeers": ["marked"] }, "sha512-7d6r20U3t4drOdCJ37Iai1J63ywXo9HpLDckz51DFVbv76a0Wv2R+WdCT1Yk0DvB+6QOjagmF5ZKnYePIRybdg=="],
 
     "@gramio/keyboards": ["@gramio/keyboards@1.2.1", "", { "dependencies": { "@gramio/types": "^9.0.1" } }, "sha512-HqCJl9HmLTvckA2fMRc+mC258vBr2zKfMqvFEGEgaeauIIP4n8TTT9GU4YCqVFTGTzGA5I6gnfk87dGZuSP6vA=="],
 
@@ -248,6 +252,8 @@
     "typescript": ["typescript@5.8.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ=="],
 
     "undici-types": ["undici-types@6.20.0", "", {}, "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="],
+
+    "gramio/@gramio/format": ["@gramio/format@0.2.1", "", { "dependencies": { "@gramio/types": "^9.0.1" } }, "sha512-amkEu4pIPETTp28+M63qFfenNwFJ++0dzXBlX1FjHROXqqsIO03YR16/ACdsh9qlBxooA/80DiSH+bcNzDPhww=="],
 
     "micromatch/picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
 
