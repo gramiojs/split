@@ -5,7 +5,7 @@
 [![JSR](https://jsr.io/badges/@gramio/split)](https://jsr.io/@gramio/split)
 [![JSR Score](https://jsr.io/badges/@gramio/split/score)](https://jsr.io/@gramio/split)
 
-This plugin can split messages which reach the Telegram limit into multiple parts (messages). This plugin also split entities so you don't need to do it manually.
+This package can split messages which reach the Telegram limit into multiple parts (messages). This package also split entities so you don't need to do it manually.
 
 # Usage
 
@@ -16,8 +16,10 @@ const bot = new Bot(process.env.BOT_TOKEN!).command(
     "start",
     async (context) => {
         const messages = await splitMessage(
-            format`${bold("foo".repeat(4096 * 2))}`,
-            context.send.bind(context) // .bind(context) is required because otherwise it will lose context data
+            format`${bold("a".repeat(4096 * 2))}`,
+            (str) => context.send(str)
+            // be worry. if u wants provide an context.send without function wrapper
+            // you should use context.send.bind(context) it is required because otherwise it will lose context data
         );
 
         console.log(messages); // messages is array of second argument results
@@ -33,10 +35,27 @@ You can also use it in other frameworks.
 import { splitMessage } from "@gramio/split";
 
 const messages = await splitMessage(
-    format`${bold("foo".repeat(4096 * 2))}`,
+    format`${bold("a".repeat(4096 * 2))}`,
     ({ text, entities }) => {
         return someOtherFramework.sendMessage(text, { entities });
     }
+);
+```
+
+### Configuration
+
+You can also configure maximum text length. By default it's `4096` symbols, but `sendPhoto` caption has limit `1024` symbols.
+
+```ts
+const messages = await splitMessage(
+    format`${bold("a".repeat(4096))}`,
+    ({ text, entities }) => {
+        return context.sendPhoto(PHOTO, {
+            caption: text,
+            caption_entities: entities,
+        });
+    },
+    1024
 );
 ```
 
