@@ -1,42 +1,39 @@
 import { describe, expect, test } from "bun:test";
-import type { TelegramMessageEntity } from "@gramio/types";
+import type {
+	TelegramMessageEntity,
+	TelegramMessageEntityType,
+} from "@gramio/types";
 import { splitText } from "../src/spliters.ts";
 import { TEXT_LIMIT } from "../src/utils.ts";
+
+function createEntity(
+	type: TelegramMessageEntityType,
+	offset: number,
+	length: number,
+): TelegramMessageEntity {
+	return {
+		type,
+		offset,
+		length,
+	};
+}
 
 const testCases = [
 	{
 		description: "should split at exact limit in symbol mode",
 		input: {
 			text: "a".repeat(TEXT_LIMIT + 100),
-			entities: [
-				{
-					type: "bold",
-					offset: 0,
-					length: TEXT_LIMIT + 100,
-				} satisfies TelegramMessageEntity,
-			],
+			entities: [createEntity("bold", 0, TEXT_LIMIT + 100)],
 			mode: "symbol" as const,
 		},
 		expected: [
 			{
 				text: "a".repeat(TEXT_LIMIT),
-				entities: [
-					{
-						type: "bold",
-						offset: 0,
-						length: TEXT_LIMIT,
-					},
-				],
+				entities: [createEntity("bold", 0, TEXT_LIMIT)],
 			},
 			{
 				text: "a".repeat(100),
-				entities: [
-					{
-						type: "bold",
-						offset: 0,
-						length: 100,
-					},
-				],
+				entities: [createEntity("bold", 0, 100)],
 			},
 		],
 	},
