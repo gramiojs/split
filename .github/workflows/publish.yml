@@ -44,10 +44,8 @@ jobs:
             - name: Type-check
               run: tsc --noEmit
 
-            # - name: Run tests
-            #   run: bun test
-            #   env:
-            #       TOKEN: ${{ secrets.BOT_TOKEN }}
+            - name: Run tests
+              run: bun test
 
             - name: Build package
               run: bun prepublishOnly
@@ -55,12 +53,12 @@ jobs:
             - name: Run publint
               run: bunx publint
 
-            # - name: Setup Deno
-            #   uses: denoland/setup-deno@v1
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
 
-            # - name: Publish package to JSR
-            #   if: ${{ github.event.inputs.publish_to_jsr }}
-            #   run: deno publish --allow-dirty --unstable-sloppy-imports
+            - name: Publish package to JSR
+              if: ${{ github.event.inputs.publish_to_jsr }}
+              run: deno publish --allow-dirty --unstable-sloppy-imports
 
             - name: Install Node
               uses: actions/setup-node@v4
@@ -73,7 +71,6 @@ jobs:
               run: npm publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
             - name: GitHub Release
               uses: ncipollo/release-action@v1
